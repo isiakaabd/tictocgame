@@ -1,14 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 *,*::after,*::before{
     box-sizing: border-box;
 }
 
 body{
     margin: 0;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 /* css variables */
 :root{
    --size: 100px;
    --markupSize: calc(var(--size) * .6)
+}
+ .remlad{
+    font-family: cursive;
+    color: red;
+    top: 0;
+    margin: 0;
+    text-align: center !important;
 }
 
 /* board */
@@ -19,9 +29,7 @@ body{
     justify-content: center;
     align-content: center;
     align-items: center;
-    /* justify-items: center; */
     grid-template-columns: repeat(3, auto);
-    overflow: hidden;
 }
 .cell{
     height: var(--size);
@@ -143,29 +151,30 @@ border-left: none;
     left: 0;
     right: 0;
     bottom:0%;
-    /* transform: translate(-50%,-50%); */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, .8);
-    display: none;
 }
 .message button{
     padding: 10px 15px;
     border-radius: 6px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    border: none;
 }
 .message button:hover{
     background-color: black;
     color: white;
-    transition: all 2s ease-in-out;
+    transition: all 200ms ease-in-out;
 }
 .message button:focus{
     outline: 0;
     border-color: black;
 }
-.message p{
+.message .resultmessages{
     font-size: 1.5rem;
     color: white;
-
+    letter-spacing: 2px;
 }
