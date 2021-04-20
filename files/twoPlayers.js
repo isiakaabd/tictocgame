@@ -11,7 +11,8 @@ const show = "message"
 
 var possibleWins = [
     [0, 1, 2], //horizontal 1
-    [3, 4, 5], //horizontal 2
+    [3, 4, 5],
+    [0, 3, 6], //horizontal 2
     [6, 7, 8], //horizontal   [cells[0], [3], cells[6]], //vertical 1
     [0, 4, 8], //vertical 2
     [2, 5, 8], //vertical   [cells[0], [4], cells[8]], //diagonal 1

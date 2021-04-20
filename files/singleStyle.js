@@ -25,8 +25,8 @@ startGame()
 
 function startGame(){
     selector = false;
-    cellElements.forEach(cell =>{
-        cell.addEventListener("click", handleClick, {once: true})
+    cellElements.forEach((cell, index) =>{
+        cell.addEventListener("click",handleClick(index) , {once: true})
         cell.classList.remove(Circle);
         cell.classList.remove(X_CELL)
     })
@@ -37,31 +37,30 @@ function startGame(){
 
 
 
+
 //  to reset game
 resetbutton.addEventListener("click", startGame)
 
-var f=[]
-function handleClick(e) {
+function handleClick(e, index) {
+    console.log(cellElements[index])
     cell = e.target
-    const selectorValue = selector? X_CELL : Circle
+   const selectorValue = selector? X_CELL : Circle
+   cellElements.forEach( (cell, index) =>{
+       if("x"){
+
+       }
+   })
+//     if (cell.classList.contains(X_CELL)|| cell.classList.contains(Circle)){
+// console.log("sssssssssssssd")
+//     }
     placeValue(cell, selectorValue)
+    
+    switchValue() 
   
     pickRandom(selectorValue)
-    switchValue() 
-    var emptyCell =[...cellElements].filter(cell =>{
-        return !cell.classList.contains(X_CELL) && !cell.classList.contains(Circle) 
-    })  
-     console.log(emptyCell)
-    var celling= emptyCell[Math.floor(Math.random() * emptyCell.length)] 
-    celling.classList.add(X_CELL)
-    if(celling){
-
-        f.push(X_CELL)
-    }
     
-  
-    console.log(f)
-    if (pickWinner(selectorValue, f)){
+
+    if (pickWinner(selectorValue)){
         endGame(false)
     } else if(drawGame()){
         endGame(true)
@@ -73,20 +72,35 @@ function handleClick(e) {
 
 //computerTurn
 
-function pickRandom(selectorValue,emptyCell ){
-//  if(selectorValue){ 
-    //         var emptyCell =[...cellElements].filter(cell =>{
-//            return !cell.classList.contains(X_CELL) && !cell.classList.contains(Circle) 
-//         })  
-//         //  console.log(emptyCell.length)      
-//         // var celling= emptyCell[Math.floor(Math.random() * emptyCell.length)] 
-//         // celling.classList.add(X_CELL)
-//     }
-//     // console.log(emptyCell)
+function pickRandom(selectorValue){
+   
+     if(selectorValue){ 
+            var emptyCell = [...cellElements].filter(singleCell =>{
+           return !singleCell.classList.contains(X_CELL) && !singleCell.classList.contains(Circle) 
+        })  
+         if(emptyCell.length>1){
+             addingCell(emptyCell)
+             console.log("x")
+            }
+        }
+        
+    }
+    
+    
+    function addingCell(emptyCell){
+        var celling;
+        celling = emptyCell[Math.floor(Math.random() * emptyCell.length)] 
+        pickRandom()
+        Xvalue(celling)
+        console.log("y")
+    }
+    
+    function Xvalue(celling){
+        if(!celling.classList.contains(X_CELL) && !celling.classList.contains(Circle)){
 
-//     // console.log(f)
-}
-// console.log(f)
+            celling.classList.add(X_CELL)   
+        }
+    }
 
 // end Game
 function endGame(draw){
@@ -101,9 +115,9 @@ function endGame(draw){
 // function to add value to the cells
 function placeValue(cell, selectorValue){
     
-    if( !cell.classList.contains(X_CELL)){
-        cell.classList.add(selectorValue)
-    }
+    // if( !cell.classList.contains(X_CELL)&& !cell.classList.contains(Circle)){
+    //     cell.classList.add(selectorValue)
+    // }
 }
 
 // for switching game player
